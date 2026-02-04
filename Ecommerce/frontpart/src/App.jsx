@@ -9,7 +9,7 @@ import ProductDetail from './Pages/ProductDetails';
 import ForgotPassword from './Pages/ForgotPassword';
 import Login from './Pages/Login';
 import Cart from './Pages/Cart';
-import Verify from './Pages/verify/index';
+import Verify from './Pages/Verify/index';
 import SignUp from './Pages/Verify/SignUp';
 import Checkout from './Pages/Checkout';
 
