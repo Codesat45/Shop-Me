@@ -11,7 +11,7 @@ import ProductSlider from "../../components/ProductSlider";
 import NewArrival from "../../components/NewArrival/NewArrival";
 
 import HomeSlider2 from "../../components/HomeSlider2/HomeSlider2";
-import axios from "axios";
+import { getData } from '../../utils/api';
 import { useNavigate } from "react-router-dom";
 
 
@@ -70,10 +70,8 @@ const [value, setValue] = useState(0);
 
   const fetchProductsByCategory = async (categoryKey) => {
     try {
-      const res = await axios.get(
-        `http://localhost:8000/api/products/category/${categoryKey}`
-      );
-      setProducts(res.data);
+      const res = await getData(`/products/category/${categoryKey}`);
+      setProducts(res);
     } catch (error) {
       console.error("Error fetching products:", error);
       setProducts([]);

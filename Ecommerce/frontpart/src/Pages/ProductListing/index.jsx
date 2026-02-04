@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import { getData } from '../../utils/api';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -73,12 +73,12 @@ function ProductListing() {
           params.colors = appliedFilters.colors.join(',');
         }
 
-        const response = await axios.get('http://localhost:8000/api/products/get', { params });
+        const response = await getData('/products/get', params);
 
-        const fetchedProducts = Array.isArray(response.data.products)
-          ? response.data.products
-          : Array.isArray(response.data)
-          ? response.data
+        const fetchedProducts = Array.isArray(response.products)
+          ? response.products
+          : Array.isArray(response)
+          ? response
           : [];
 
         setProducts(fetchedProducts);
@@ -134,13 +134,9 @@ function ProductListing() {
         return;
       }
 
-      const url = `http://localhost:8000/api/products/category/${encodeURIComponent(category)}`;
+      const response = await getData(`/products/category/${encodeURIComponent(category)}`, otherFilters);
 
-      const response = await axios.get(url, {
-        params: otherFilters,
-      });
-
-      setProducts(response.data.products || response.data);
+      setProducts(response.products || response);
     } catch (error) {
       console.error('Failed to fetch filtered products:', error);
     }

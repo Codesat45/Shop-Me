@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { FreeMode, Pagination, Navigation } from "swiper/modules";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import axios from "axios";
+import { getData } from '../../utils/api';
 
 function HomeCatSlider() {
   const [productImages, setProductImages] = useState([]);
@@ -16,8 +16,8 @@ function HomeCatSlider() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/products/get");
-        const products = res.data || [];
+        const res = await getData('/products/get');
+        const products = res || [];
   
         // Extract and reverse the first images
         const firstImages = products

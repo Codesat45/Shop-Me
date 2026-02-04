@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { getData } from '../../utils/api';
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -27,10 +27,8 @@ function Sidebar({ onApplyFilters }) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/api/categories/getCategory"
-        );
-        setCategories(response.data);
+        const response = await getData('/categories/getCategory');
+        setCategories(response);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
