@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/sheild1.png";
 import OtpBox from "../../components/OtpBox";
