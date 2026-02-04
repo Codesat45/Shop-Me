@@ -3,7 +3,7 @@ import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-import SideBar from '../../components/Sidebar';
+import SideBar from '../../components/SideBar';
 import ProductItem from '../../components/ProductItem';
 import { Select, MenuItem, IconButton, Box, CircularProgress } from '@mui/material';
 import { GridView, ViewList } from '@mui/icons-material';
