@@ -40,6 +40,33 @@ export const sendVerificationEmail = async (user) => {
     }
 };
 
+export const sendTestEmail = async (req, res) => {
+  try {
+    const { to } = req.body;
+    if (!to) {
+      return res.status(400).json({ message: "Recipient email is required" });
+    }
+
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to,
+      subject: "Shop-Me test email",
+      text: "This is a test email to verify SMTP delivery.",
+    });
+
+    return res.status(200).json({
+      message: "Test email sent",
+      messageId: info.messageId,
+    });
+  } catch (error) {
+    console.error("Error sending test email:", error);
+    return res.status(500).json({
+      message: "Test email failed",
+      error: error.message,
+    });
+  }
+};
+
 export const registerUser = async (req, res) => {
   try {
     console.log("Received request body:", req.body);
@@ -131,7 +158,8 @@ export const verifyEmail = async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password" });
         }
 
-        if (!user.verify_email) {
+        const allowUnverified = process.env.ALLOW_UNVERIFIED_LOGIN === "true";
+        if (!user.verify_email && !allowUnverified) {
             return res.status(403).json({ message: "Please verify your email before logging in." });
         }
 
@@ -192,6 +220,78 @@ export const resendVerificationEmail = async (req, res) => {
   };
   
 
+export const sendVerificationOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (user.verify_email) {
+      return res.status(400).json({ message: "Email already verified" });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    user.verify_email_otp = otp;
+    user.verify_email_expiry = expiry;
+    await user.save();
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "Your email verification code",
+      text: `Your verification code is: ${otp}. It expires in 10 minutes.`,
+    });
+
+    return res.status(200).json({ message: "Verification OTP sent" });
+  } catch (error) {
+    console.error("Error sending verification OTP:", error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};
+
+export const verifyEmailOtp = async (req, res) => {
+  try {
+    let { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ message: "Email and OTP are required" });
+    }
+
+    email = email.toLowerCase().trim();
+    otp = otp.toString().trim();
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (user.verify_email) {
+      return res.status(400).json({ message: "Email already verified" });
+    }
+
+    if (!user.verify_email_otp || user.verify_email_otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+    if (!user.verify_email_expiry || Date.now() > user.verify_email_expiry) {
+      return res.status(400).json({ message: "OTP expired" });
+    }
+
+    user.verify_email = true;
+    user.verify_email_otp = null;
+    user.verify_email_expiry = null;
+    await user.save();
+
+    return res.status(200).json({ message: "Email verified successfully" });
+  } catch (error) {
+    console.error("Error verifying email OTP:", error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};
 
 
 
@@ -221,8 +321,13 @@ export const resendVerificationEmail = async (req, res) => {
       }
   
       // Update with new avatar
-      console.log("New avatar uploaded to Cloudinary:", req.file.path);
-      user.avatar = req.file.path;
+      let avatarUrl = req.file.path;
+      if (req.file.filename) {
+        avatarUrl = `/uploads/avatars/${req.file.filename}`;
+      }
+
+      console.log("New avatar uploaded:", avatarUrl);
+      user.avatar = avatarUrl;
       await user.save();
   
       // ✅ THIS IS WHAT MATTERS

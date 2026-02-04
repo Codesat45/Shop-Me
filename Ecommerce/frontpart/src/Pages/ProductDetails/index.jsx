@@ -36,7 +36,7 @@ function ProductDetail() {
 
         // Fetch the main product
         const res = await axios.get(
-          `http://localhost:5000/api/products/get/${productId}?t=${Date.now()}`
+          `http://localhost:8000/api/products/get/${productId}?t=${Date.now()}`
         );
         const productData = res.data;
         setProduct(productData);
@@ -49,7 +49,7 @@ function ProductDetail() {
 
         if (categoryId) {
           const relatedRes = await axios.get(
-            `http://localhost:5000/api/products/category/${categoryId}`
+            `http://localhost:8000/api/products/category/${categoryId}`
           );
           const related = relatedRes.data.filter((p) => p._id !== productId);
           setRelatedProducts(related);
@@ -72,7 +72,7 @@ function ProductDetail() {
     try {
       setAddingToCart(true);
       await axios.post(
-        "http://localhost:5000/api/cart/add",
+        "http://localhost:8000/api/cart/add",
         {
             product_id: productId,
             quantity,
@@ -275,7 +275,7 @@ function ProductDetail() {
                       onClick={async () => {
                         try {
                           await axios.post(
-                            "http://localhost:5000/api/cart/add",
+                            "http://localhost:8000/api/cart/add",
                             {
                               product_id: item._id,
                               quantity: 1,

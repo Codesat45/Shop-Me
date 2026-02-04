@@ -36,7 +36,7 @@ function MyAccount() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/user/me", {
+        const res = await axios.get("http://localhost:8000/api/user/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -95,7 +95,7 @@ function MyAccount() {
 
       try {
         const res = await axios.patch(
-          `http://localhost:5000/api/user/update/${userId}`,
+          `http://localhost:8000/api/user/update/${userId}`,
           {
             fullname: userInfo.name,
             email: userInfo.email,
@@ -126,7 +126,7 @@ function MyAccount() {
     try {
       setLoading(true);
       const res = await axios.put(
-        "http://localhost:5000/api/user/user-avatar",
+        "http://localhost:8000/api/user/user-avatar",
         formData,
         {
           headers: {
@@ -151,7 +151,7 @@ function MyAccount() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/user/logout",
+        "http://localhost:8000/api/user/logout",
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

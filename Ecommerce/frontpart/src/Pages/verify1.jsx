@@ -11,7 +11,7 @@ function VerifyEmail() {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/user/verify/${token}?check=true`);
+        const res = await fetch(`http://localhost:8000/api/user/verify/${token}?check=true`);
         const data = await res.json();
 
         if (res.ok) {
@@ -35,7 +35,7 @@ function VerifyEmail() {
   const handleVerify = async () => {
     setMessage("Verifying your email...");
     try {
-      const res = await fetch(`http://localhost:5000/api/user/verify/${token}`, {
+      const res = await fetch(`http://localhost:8000/api/user/verify/${token}`, {
         method: "POST",
       });
       const data = await res.json();

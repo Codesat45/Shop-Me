@@ -73,7 +73,7 @@ function ProductListing() {
           params.colors = appliedFilters.colors.join(',');
         }
 
-        const response = await axios.get('http://localhost:5000/api/products/get', { params });
+        const response = await axios.get('http://localhost:8000/api/products/get', { params });
 
         const fetchedProducts = Array.isArray(response.data.products)
           ? response.data.products
@@ -134,7 +134,7 @@ function ProductListing() {
         return;
       }
 
-      const url = `http://localhost:5000/api/products/category/${encodeURIComponent(category)}`;
+      const url = `http://localhost:8000/api/products/category/${encodeURIComponent(category)}`;
 
       const response = await axios.get(url, {
         params: otherFilters,

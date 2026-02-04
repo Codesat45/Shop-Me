@@ -16,7 +16,7 @@ function HomeCatSlider() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products/get");
+        const res = await axios.get("http://localhost:8000/api/products/get");
         const products = res.data || [];
   
         // Extract and reverse the first images

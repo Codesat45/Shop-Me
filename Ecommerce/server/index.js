@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import path from 'path';
 import connectDB from './config/db.js';
 import './config/cloudinary.js'; // Ensure cloudinary is configured
 import userRouter from './routes/authRouter.js';
@@ -33,6 +34,7 @@ app.use(
     })
 );
 app.use(morgan('dev'));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // Routes
 app.use('/api/user', userRouter);

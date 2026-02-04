@@ -23,7 +23,6 @@ import {
   Logout,
 } from "@mui/icons-material";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
 
 // Styled Badge Component
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -73,14 +72,14 @@ function Header() {
 
     if (!token) {
       alert("No token found, you are already logged out.");
-      setIsLogin(false);
+      context.setIsLogin(false);
       navigate("/login");
       return;
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/logout", {
-        method: "GET", // matches backend route
+      const res = await fetch("http://localhost:8000/api/user/logout", {
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +105,7 @@ function Header() {
     } finally {
       localStorage.removeItem("token");
       localStorage.removeItem("adminInfo"); // if you store admin info
-      setIsLogin(false);
+      context.setIsLogin(false);
       navigate("/login");
     }
   };

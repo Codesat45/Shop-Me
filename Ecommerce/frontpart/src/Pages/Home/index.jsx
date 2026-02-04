@@ -71,7 +71,7 @@ const [value, setValue] = useState(0);
   const fetchProductsByCategory = async (categoryKey) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/products/category/${categoryKey}`
+        `http://localhost:8000/api/products/category/${categoryKey}`
       );
       setProducts(res.data);
     } catch (error) {

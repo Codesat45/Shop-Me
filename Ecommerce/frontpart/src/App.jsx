@@ -27,7 +27,6 @@ export const AuthContext = createContext();
 function App() {
   const [isLogin, setIsLogin] = useState(true); // ✅ Consistent state name
 
-  
   const alertBox = (status, msg) => {
     if (status === 'success') toast.success(msg);
     if (status === 'error') toast.error(msg);
@@ -55,6 +54,9 @@ function App() {
           <Route path="/MyAccount" element={<MyAccount/>} />
           <Route path="/WishList" element={<WishList/>} />
           <Route path="/Order" element={<Order/>} />
+          <Route path="/electronics" element={<ProductListing />} />
+          <Route path="/footwear" element={<ProductListing />} />
+          <Route path="/furniture" element={<ProductListing />} />
         </Routes>
         <Footer />
         <Toaster />

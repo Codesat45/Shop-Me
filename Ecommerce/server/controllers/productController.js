@@ -131,7 +131,7 @@ export const getProductsByCategory = async (req, res) => {
         const products = await Product.find({ category: categoryId }).populate("category");
 
         if (!products || products.length === 0) {
-            return res.status(404).json({ message: "No products found for this category" });
+            return res.status(200).json([]);
         }
 
         res.status(200).json(products);

@@ -28,7 +28,7 @@ function Sidebar({ onApplyFilters }) {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/categories/getCategory"
+          "http://localhost:8000/api/categories/getCategory"
         );
         setCategories(response.data);
       } catch (error) {

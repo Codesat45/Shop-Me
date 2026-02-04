@@ -15,6 +15,9 @@ import {
   sendVerificationEmail,
   resendVerificationEmail,
   getCurrentUser,
+  sendTestEmail,
+  sendVerificationOtp,
+  verifyEmailOtp,
 
 
 } from "../controllers/UserController.js";
@@ -40,7 +43,10 @@ router.post("/send-otp", sendOtpController);       // Send OTP to email
 router.post("/verify-otp", verifyOtpController);   // Verify OTP
 router.post("/reset-password", resetPasswordController);  // Reset password
 router.post("/send-verification",sendVerificationEmail);  
+router.post("/send-verification-otp", sendVerificationOtp);
+router.post("/verify-email-otp", verifyEmailOtp);
 router.get("/me", authenticate, getCurrentUser);
+router.post("/test-email", sendTestEmail);
 
 
 

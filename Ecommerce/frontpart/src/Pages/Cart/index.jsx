@@ -13,7 +13,7 @@ function Cart() {
   const fetchCart = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/cart/get", {
+      const res = await axios.get("http://localhost:8000/api/cart/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ function Cart() {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/cart/update/${id}`,
+        `http://localhost:8000/api/cart/update/${id}`,
         { quantity: newQty },
         {
           headers: {
@@ -60,7 +60,7 @@ function Cart() {
 
   const confirmRemove = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/delete/${itemToRemove._id}`, {
+      await axios.delete(`http://localhost:8000/api/cart/delete/${itemToRemove._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

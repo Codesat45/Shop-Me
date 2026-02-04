@@ -40,7 +40,13 @@ function SignUp() {
     } catch (error) {
       console.error("Error during signup:", error);
 
-      alert("Something went wrong. Please try again.");
+      if (error?.message?.includes("User already exists")) {
+        alert("This email is already registered. Please log in.");
+        navigate("/Login");
+        return;
+      }
+
+      alert(error?.message || "Something went wrong. Please try again.");
     }
   };
   

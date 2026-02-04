@@ -9,7 +9,7 @@ function SendVerificationEmail() {
     setMessage("Sending verification email...");
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/send-verification", {
+      const res = await fetch("http://localhost:8000/api/user/send-verification", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
