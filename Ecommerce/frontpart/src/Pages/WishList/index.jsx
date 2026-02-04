@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Heart, Trash2, ShoppingCart, PlusCircle } from "lucide-react";
 import { Button } from "@mui/material";
-import img  from "../../assets/wishlist.png";
+import img  from "/wishlist.png";
 
 const initialWishlistItems = [
   {

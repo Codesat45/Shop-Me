@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import defaultImg from "../../assets/user1.png";
+import defaultImg from "/user1.png";
 import { AuthContext } from "../../App";
 
 function MyAccount() {

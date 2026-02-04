@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser, FaBox, FaHeart, FaMapMarkerAlt, FaCreditCard, FaCog, FaSignOutAlt } from 'react-icons/fa';
-import img from "../../assets/user1.png";
-import img1 from "../../assets/bag.png";
-import img2 from "../../assets/Laptop.jpg";
+import img from "/user1.png";
+import img1 from "/bag.png";
+import img2 from "/Laptop.jpg";
 
 const Order = () => {
   const [userInfo, setUserInfo] = useState({
@@ -35,7 +35,7 @@ const Order = () => {
       status: "Shipped",
       total: "$80.00",
       items: [
-        { name: "Bluetooth Speaker", price: "$80.00", quantity: 1, image: "../../assets/speaker.png", description: "Portable Bluetooth speaker with deep bass." }
+        { name: "Bluetooth Speaker", price: "$80.00", quantity: 1, image: "/speakers.png", description: "Portable Bluetooth speaker with deep bass." }
       ]
     }
   ];

@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import image1 from "../../assets/playstation.png";
-import image2 from "../../assets/womenCollections.png";
-import image3 from "../../assets/perfume.png";
-import image4 from "../../assets/speakers.png";
+import image1 from "/playstation.png";
+import image2 from "/womenCollections.png";
+import image3 from "/perfume.png";
+import image4 from "/speakers.png";
 
 const hoverEffect = {
   scale: 1.05,

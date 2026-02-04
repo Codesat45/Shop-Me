@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { GiCommercialAirplane } from "react-icons/gi";
 import CategoryPanel from './CategoryPanel';
 import './style.css';
-import img from '../../../assets/furniture.png'
+import img from '/furniture.png'
 
 
 function Navigation() {

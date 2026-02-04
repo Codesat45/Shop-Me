@@ -7,12 +7,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { EffectFade, Navigation, Autoplay } from 'swiper/modules';
 import { motion } from 'framer-motion';
 
-import img from '../../assets/phone.png';
-import img1 from '../../assets/laptop.jpg';
-
 const slides = [
-  { src: img, text: 'Latest Smartphone - Experience Innovation' },
-  { src: img1, text: 'High Performance Laptop - Work & Play' },
+  { src: '/phone.png', text: 'Latest Smartphone - Experience Innovation' },
+  { src: '/laptop.jpg', text: 'High Performance Laptop - Work & Play' },
   { src: 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS9Ad_kWjfLK8Uf-_IhJdHjjcJX9xeB-hOdZClITfBdPBGCRpx8NisyMR2taleJteMdEVFG9iY1ohV-3cuHr742eXqNixqBnk99LKursrx19zMtreXdkj2PbA', text: 'Fashionable Handbag - Elevate Your Style' },
   { src: 'https://images.meesho.com/images/products/441711758/83xgy_1200.jpg', text: 'Trendy Footwear - Step in Style' }
 ];
