@@ -28,7 +28,7 @@ function SignUp() {
     try {
       const response = await postData("/user/register", formData);
       console.log("Backend response:", response);
-  
+
       if (response?.message?.includes("User registered successfully")) {
         alert("Registration successful! Please verify your email.");
 
@@ -49,7 +49,7 @@ function SignUp() {
       alert(error?.message || "Something went wrong. Please try again.");
     }
   };
-  
+
   return (
     <section className='flex justify-center items-center min-h-screen bg-gradient-to-r from-pink-100 to-red-100'>
       <div className='w-full max-w-md bg-white p-8 rounded-2xl shadow-lg space-y-6'>
