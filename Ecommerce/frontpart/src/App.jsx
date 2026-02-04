@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import { useState, createContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
@@ -8,9 +8,9 @@ import ProductListing from './Pages/ProductListing';
 import ProductDetail from './Pages/ProductDetails';
 import ForgotPassword from './Pages/ForgotPassword';
 import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
 import Cart from './Pages/Cart';
 import Verify from './Pages/verify/index';
+import SignUp from './Pages/Verify/SignUp';
 import Checkout from './Pages/Checkout';
 
 import toast, { Toaster } from 'react-hot-toast';
